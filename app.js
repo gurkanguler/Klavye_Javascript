@@ -384,25 +384,172 @@ let Alt_Gr = (harf) => {
 }
 
 
+let Space = () => {
+
+
+	for(let i = 0; i < klavye_kapsayici.length; i++){
+
+		if(i == 13){
+			klavye_kapsayici[i].innerText = "Backspace";
+			
+		}
+
+		else if(i == 14){
+			klavye_kapsayici[i].innerText = "Tab";
+			
+		}
+		else if(i == 28){
+			klavye_kapsayici[i].innerText = "CapsLock";
+
+		}
+		else if(i == 40){
+			klavye_kapsayici[i].innerText = "Enter";
+		}
+		else if(i == 41){
+			klavye_kapsayici[i].innerText = "Shift";
+		}
+		else if(i == 53){
+			klavye_kapsayici[i].innerText = "Shift";
+		}
+		else if(i == 54){
+			klavye_kapsayici[i].innerText = "Ctrl";
+		}
+		else if(i == 55){
+			klavye_kapsayici[i].innerText = "FN";
+		}
+		else if(i == 56){
+			klavye_kapsayici[i].innerText = "Win";
+		}
+		else if(i == 57){
+			klavye_kapsayici[i].innerText = "Alt";
+		}
+		else if(i == 58){
+			klavye_kapsayici[i].innerText = "Space";
+			klavye_kapsayici[i].style.background = "green";
+			klavye_kapsayici[i].style.color = "#fff";
+			setTimeout(() => {
+				klavye_kapsayici[i].style.background = "black";
+				klavye_kapsayici[i].style.color = "#00ff00";
+			}, 100);
+		}
+		else if(i == 59){
+			klavye_kapsayici[i].innerText = "Alt Gr";
+			
+		}
+		else if(i == 60){
+			klavye_kapsayici[i].innerText = "Ctrl";
+		}
+		
+	}
+}
+
 let Backspace = () => {
-	let cumle = []
 
-	for(let i = 0; i <= metin_kutusu.value.length; i++){
-		cumle.push(metin_kutusu.value[i]);
+	for(let i = 0; i < klavye_kapsayici.length; i++){
+
+		if(i == 13){
+			klavye_kapsayici[i].innerText = "Backspace";
+			klavye_kapsayici[i].style.background = "green";
+			klavye_kapsayici[i].style.color = "#fff";
+			setTimeout(() => {
+				klavye_kapsayici[i].style.background = "black";
+				klavye_kapsayici[i].style.color = "#00ff00";
+			}, 100);
+		}
+
+		else if(i == 14){
+			klavye_kapsayici[i].innerText = "Tab";
+			
+		}
+		else if(i == 28){
+			klavye_kapsayici[i].innerText = "CapsLock";
+
+		}
+		else if(i == 40){
+			klavye_kapsayici[i].innerText = "Enter";
+		}
+		else if(i == 41){
+			klavye_kapsayici[i].innerText = "Shift";
+		}
+		else if(i == 53){
+			klavye_kapsayici[i].innerText = "Shift";
+		}
+		else if(i == 54){
+			klavye_kapsayici[i].innerText = "Ctrl";
+		}
+		else if(i == 55){
+			klavye_kapsayici[i].innerText = "FN";
+		}
+		else if(i == 56){
+			klavye_kapsayici[i].innerText = "Win";
+		}
+		else if(i == 57){
+			klavye_kapsayici[i].innerText = "Alt";
+		}
+		else if(i == 58){
+			klavye_kapsayici[i].innerText = "Space";
+		}
+		else if(i == 59){
+			klavye_kapsayici[i].innerText = "Alt Gr";
+			
+		}
+		else if(i == 60){
+			klavye_kapsayici[i].innerText = "Ctrl";
+		}
+		
 	}
 
+	let metin_kutusu_val = metin_kutusu.value;
 
-	for(let i = 0; i <= cumle.length; i++){
-		metin_kutusu.value[i] = cumle.pop();
-		console.log(metin_kutusu.value[i]);
+	for(let i = 0 ; i < metin_kutusu_val.length; i++){
+
+		let del = metin_kutusu_val.slice(0, -1);
+
+		metin_kutusu.value = del;
 	}
+}
+
+let saat = 0, dakika = 0, saniye = 0;
+
+let zamani_baslat = () => {
+
+	if(saniye < 59){ saniye = saniye + 1 }
+	else{
+
+		saniye = 0;
+
+		if(dakika < 59){ dakika = dakika + 1 }
+
+		else{
+
+			dakika = 0;
+			saat = saat + 1;
+		}
+	}
+
+	document.getElementById("not").innerText = "Süreyi Durdurmak İçin Enter'a Basınız...";
+
+	zaman.innerText = "Saat : " + saat+"   Dakika : " + dakika+ "  Saniye : " + saniye;
+
+
 }
 
 window.onload = () => {
 	
 	let count = 0;
+
+	let sound = new Audio("sound.mp3");
+
+	let zaman = document.getElementById("zaman");
+
+	zaman.innerText = "0:0:0";
 	
 	window.addEventListener("keyup", (e) => {
+		
+		sound.play();
+
+		setInterval(zamani_baslat, 1000);
+		
 
 		if(e.key == "Tab"){
 			Tab(e.key);
@@ -466,7 +613,10 @@ window.onload = () => {
 			console.log("err");
 		}
 		else if(e.key == "Enter"){
-			console.log("err");
+			clearInterval(zamani_baslat, 1);
+		}
+		else if(e.key == " "){
+			Space(e.key);
 		}
 
 		else{
