@@ -1,0 +1,70 @@
+html, body{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	background: #000;
+}
+
+#content{
+	width: 80%;
+	height: 50%;
+	position: absolute;
+	top: 50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+	background: #000;
+}
+header{
+	color:#00ff00;
+	text-align:center;
+	font-weight:bold;
+	user-select: none;
+}
+#kullanici-yazi{
+	width: 100%;
+	text-align: center;
+}
+#kullanici-yazi > #textbox{
+	width:100%;
+	padding: 10px;
+	background: #000;
+	color:#00ff00;
+	border: 0;
+	outline:none;
+	border-bottom: 2px solid green;
+}
+#kullanici-yazi > #textbox::placeholder{
+	color: #00ff00;
+	font-size:14px;
+}
+
+#klavye{
+	width:100%;
+	height:300px;
+	margin-top: 50px;
+	color: #00ff00;
+	text-align: center;
+	user-select: none;
+	transition: .3s ease;
+	font-weight:bold;
+}
+
+#klavye ul{ list-style-type: none; margin:0; padding: 0; }
+
+#klavye ul li { 
+	display: inline-block;
+	border:1px solid #fff;
+	margin: 5px auto;
+	padding: 5px;
+	width: auto;
+}
+
+#harf-sayaci{
+	width: 100%;
+	color: #00ff00;
+	text-align: center;
+	font-weight: bold;
+	position: relative;
+	top: -60px;
+	user-select: none;
+}
